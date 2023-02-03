@@ -1,6 +1,10 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
+
 require('update-electron-app')()
+
+const electronReload = require('electron-reload');
+electronReload(__dirname,{});
 
 const createWindow = () => {
     const win = new BrowserWindow({
