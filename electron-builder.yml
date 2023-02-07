@@ -1,4 +1,4 @@
 appId: FindManga
 publish:
   provider: github
-  token: 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
+  token: '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'

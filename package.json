@@ -1,6 +1,6 @@
 {
   "name": "findmanga",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "app for finding manga you need",
   "main": "main.js",
   "type": "commonjs",
@@ -13,9 +13,18 @@
     "build": "electron-builder build --win --publish never",
     "deploy": "electron-builder build --win --publish always"
   },
+  "build": {
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "gaetanvan",
+        "repo": "https://github.com/gaetanvan/FindManga"
+      }
+    ]
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gaetanvan/FindManga.git"
+    "url": "https://github.com/gaetanvan/FindManga"
   },
   "author": "gaetanv",
   "license": "ISC",
@@ -29,7 +38,7 @@
     "@electron-forge/maker-rpm": "^6.0.4",
     "@electron-forge/maker-squirrel": "^6.0.4",
     "@electron-forge/maker-zip": "^6.0.4",
-    "@electron-forge/publisher-github": "^6.0.4",
+    "@electron-forge/publisher-github": "^6.0.5",
     "electron": "^22.2.0",
     "electron-reloader": "^1.2.3"
   },
