@@ -93,12 +93,17 @@ else {
         }
     }
     let coverUrl = 'https://api.mangadex.org/cover/' + coverId;
+    let chapterUrl =    'https://api.mangadex.org/manga/'+ mangaId +'/feed?order[chapter]=asc&limit=500&translatedLanguage[]=en'
 
     let coverFetch = await fetch(coverUrl);
     let resultCover = await coverFetch.json();
     let srcCover = resultCover.data.attributes.fileName
 
-    console.log(srcCover)
+    let chapterFetch = await fetch(chapterUrl);
+    let chapterResult = await chapterFetch.json();
+
+    console.log(chapterResult)
+
 
     container.innerHTML += '<div class="row">' +
         '           <div class="col-md-8">' +
@@ -126,4 +131,21 @@ else {
         '                </div>' +
         '            </div>' +
         '        </div>';
+
+    for (let i = 0; i <= chapterResult.data.length; i++){
+        if (i >= 1){
+            if (chapterResult.data[i].attributes.chapter === chapterResult.data[i-1].attributes.chapter) {
+                continue;
+            }
+        }
+        container.innerHTML +=
+        '<a href="chapter.html?id='+ chapterResult.data[i].id +'&chapterId='+ mangaId +'" class="text-decoration-none text-reset">' +
+            '<div class="row card m-2">' +
+                '<div class="card-body">' +
+                    '<div>'+ chapterResult.data[i].attributes.title +'</div>'+
+                    '<div>Ch '+ chapterResult.data[i].attributes.chapter +'</div>' +
+                '</div>' +
+            '</div>' +
+        '</a>'
+    }
 }
