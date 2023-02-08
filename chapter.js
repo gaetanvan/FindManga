@@ -15,7 +15,18 @@ let mangaFetch = await fetch(mangaUrl);
 let mangaResult = await mangaFetch.json();
 
 console.log(mangaResult)
-for(let a = 0; a <= mangaResult.data.length - 1; a++){
+let a
+for(a = 0; a <= mangaResult.data.length - 1; a++){
+    if (mangaResult.data[a].id === chapterId){
+        a = a
+        break;
+    }
+}
+
+console.log(a)
+
+for(a = a ; a <= mangaResult.data.length - 1; a++){
+    console.log('oui')
     if (a > 0){
         if (mangaResult.data[a].attributes.chapter === mangaResult.data[a-1].attributes.chapter){
             continue;
