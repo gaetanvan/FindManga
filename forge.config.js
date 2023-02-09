@@ -30,7 +30,7 @@ module.exports = {
           owner: 'gaetanvan',
           name: 'FindManga',
         },
-        authToken : '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',
+        authToken : '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',
         prerelease: false,
         draft: true,
       },
