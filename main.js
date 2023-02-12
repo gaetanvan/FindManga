@@ -4,7 +4,6 @@ const path = require('path')
 if(require('electron-squirrel-startup')) return;
 require('update-electron-app')()
 
-
 const createWindow = () => {
     const win = new BrowserWindow({
         width: 800,
