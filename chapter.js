@@ -12,7 +12,7 @@ let chapterUrl = 'https://api.mangadex.org/at-home/server/' + chapterId
 let chapterFetch = await fetch(chapterUrl)
 let chapterResult = await chapterFetch.json()
 
-let mangaUrl =    'https://api.mangadex.org/manga/'+ mangaId +'/feed?order[chapter]=asc&limit=500&translatedLanguage[]=en'
+let mangaUrl = 'https://api.mangadex.org/manga/' + mangaId + '/feed?order[chapter]=asc&limit=500&translatedLanguage[]=en'
 
 let mangaFetch = await fetch(mangaUrl);
 let mangaResult = await mangaFetch.json();
@@ -20,8 +20,8 @@ let mangaResult = await mangaFetch.json();
 console.log(mangaResult)
 let a
 /* On boucle pour récuperer l'index des chapitre */
-for(a = 0; a <= mangaResult.data.length - 1; a++){
-    if (mangaResult.data[a].id === chapterId){
+for (a = 0; a <= mangaResult.data.length - 1; a++) {
+    if (mangaResult.data[a].id === chapterId) {
         a = a
         break;
     }
@@ -29,13 +29,12 @@ for(a = 0; a <= mangaResult.data.length - 1; a++){
 
 console.log(a)
 /* On boucle pour recuperer les pages de notre de chapitre */
-for(a = a ; a <= mangaResult.data.length - 1; a++){
+for (a = a; a <= mangaResult.data.length - 1; a++) {
     console.log('oui')
-    if (a > 0){
-        if (mangaResult.data[a].attributes.chapter === mangaResult.data[a-1].attributes.chapter){
+    if (a > 0) {
+        if (mangaResult.data[a].attributes.chapter === mangaResult.data[a - 1].attributes.chapter) {
             continue;
-        }
-        else {
+        } else {
             chapterId = mangaResult.data[a].id
             chapterUrl = 'https://api.mangadex.org/at-home/server/' + chapterId
 
@@ -43,26 +42,25 @@ for(a = a ; a <= mangaResult.data.length - 1; a++){
             chapterResult = await chapterFetch.json()
             break;
         }
-    }
-    else {
+    } else {
         continue;
     }
 }
 /* On boucle pour afficher les pages de notre de chapitre */
 console.log(mangaResult.data[2].attributes.chapter)
-for(let i = 0; i <= chapterResult.chapter.data.length - 1; i++){
-    let chapterImageUrl = 'https://uploads.mangadex.org/data/'+ chapterResult.chapter.hash +'/'+ chapterResult.chapter.data[i]
+for (let i = 0; i <= chapterResult.chapter.data.length - 1; i++) {
+    let chapterImageUrl = 'https://uploads.mangadex.org/data/' + chapterResult.chapter.hash + '/' + chapterResult.chapter.data[i]
 
     container.innerHTML +=
-        '<img class="d-block m-auto" src="'+ chapterImageUrl +'" alt="">'
+        '<img class="d-block m-auto" src="' + chapterImageUrl + '" alt="">'
 }
 
 let nextChapter
 
 console.log(mangaResult)
 /* On boucle pour éviter les chapitre dupliqué */
-for(let i= 0; i <= mangaResult.data.length; i++){
-    if (mangaResult.data[i].id === chapterId){
+for (let i = 0; i <= mangaResult.data.length; i++) {
+    if (mangaResult.data[i].id === chapterId) {
         console.log(mangaResult.data[i])
         nextChapter = mangaResult.data[i + 1].id
         break
@@ -70,6 +68,6 @@ for(let i= 0; i <= mangaResult.data.length; i++){
 }
 /* On affiche un bouton pour passer au chapitre suivant */
 btn.innerHTML +=
-    '<a href="chapter.html?id='+ nextChapter +'&chapterId='+ mangaId +'" class="text-decoration-none text-reset d-flex justify-content-end">' +
-        '<button>Next</button>'+
+    '<a href="chapter.html?id=' + nextChapter + '&chapterId=' + mangaId + '" class="text-decoration-none text-reset d-flex justify-content-end">' +
+    '<button>Next</button>' +
     '</a>'
