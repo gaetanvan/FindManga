@@ -1,6 +1,6 @@
 module.exports = {
   packagerConfig: {
-    icon: 'mangaicon.png'
+    icon: './mangaicon'
   },
   rebuildConfig: {},
   makers: [
@@ -32,7 +32,7 @@ module.exports = {
           owner: 'gaetanvan',
           name: 'FindManga',
         },
-        authToken : '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',
+        authToken : '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',
         prerelease: false,
         draft: true,
       },
